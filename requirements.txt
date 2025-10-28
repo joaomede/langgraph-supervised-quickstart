@@ -1,0 +1,19 @@
+# Core dependencies - LangGraph + LangSmith (Latest Versions - October 2025)
+# Requires Python >= 3.10
+# Latest versions from PyPI (Oct 23, 2025)
+
+langgraph==1.0.1
+langchain==1.0.2
+langsmith==0.4.37
+langchain-openai==1.0.1
+langchain-anthropic==1.0.0
+langchain-core==1.0.0
+langchain-community==0.4.0
+
+# Utilities
+python-dotenv>=1.0.0
+
+# Optional: For better terminal output
+rich>=13.0.0
+
+# Offline tools only (no web/search deps)

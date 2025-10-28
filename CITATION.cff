@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "LangGraph Supervised Quickstart"
+authors:
+  - family-names: Medeiros
+    given-names: "João"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+repository-code: "https://github.com/joaomede/langgraph-supervised-quickstart"
+url: "https://github.com/joaomede/langgraph-supervised-quickstart"
+license: MIT
+version: "0.1.0"
+date-released: "2025-10-28"
+keywords:
+  - langgraph
+  - langchain
+  - multi-agent
+  - supervised-learning
+  - cli
+  - python
+  - openai

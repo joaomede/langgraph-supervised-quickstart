@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "langgraph-supervised-quickstart"
+version = "0.1.0"
+description = "Supervised multi-agent quickstart using LangGraph v1"
+readme = "README.md"
+requires-python = ">=3.10"
+# Dependencies intentionally not duplicated here; use requirements.txt for env setup.
+
+[project.urls]
+homepage = "https://github.com/joaomede/langgraph-supervised-quickstart"
+repository = "https://github.com/joaomede/langgraph-supervised-quickstart"
+documentation = "https://github.com/joaomede/langgraph-supervised-quickstart#readme"
+issues = "https://github.com/joaomede/langgraph-supervised-quickstart/issues"
+
+[project.scripts]
+# After `pip install -e .`, you'll have a `lgsq` command available
+lgsq = "cli:entrypoint"
+
+[tool.hatch.build.targets.wheel]
+packages = [{ include = "*", from = "src" }]

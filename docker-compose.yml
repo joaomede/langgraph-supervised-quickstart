@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  langgraph-quickstart:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: langgraph-supervised-quickstart:latest
+    container_name: langgraph-quickstart
+    
+    # Load environment variables from .env file
+    env_file:
+      - .env
+    
+    # Interactive mode requires stdin and tty
+    stdin_open: true
+    tty: true
+    
+    # Optional: mount src for development (hot reload)
+    # volumes:
+    #   - ./src:/app/src:ro
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Resource limits (optional)
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+# Optional: separate service for single-query mode
+  langgraph-single-query:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: langgraph-supervised-quickstart:latest
+    env_file:
+      - .env
+    command: ["--query", "Extract entities from: OpenAI and LangGraph"]
+    profiles:
+      - single-query

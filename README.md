@@ -39,9 +39,9 @@ graph TD
     DirectResponse --> User
     Supervisor --> User
     
-    style Supervisor fill:#e1bee7,stroke:#8e24aa,stroke-width:3px
-    style TextAgent fill:#c5e1a5,stroke:#558b2f,stroke-width:2px
-    style DataAgent fill:#90caf9,stroke:#1976d2,stroke-width:2px
+    style Supervisor fill:#8e24aa,stroke:#e1bee7,stroke-width:3px,color:#fff
+    style TextAgent fill:#558b2f,stroke:#c5e1a5,stroke-width:2px,color:#fff
+    style DataAgent fill:#1976d2,stroke:#90caf9,stroke-width:2px,color:#fff
 ```
 
 **How it works:**

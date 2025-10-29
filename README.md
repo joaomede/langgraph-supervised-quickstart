@@ -2,9 +2,13 @@
 
 A **minimal example** of a multi-agent supervisor system using LangGraph v1. Designed for easy understanding and quick setup.
 
+![Demo](docs/assets/demo.gif)
+
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![LangGraph](https://img.shields.io/badge/LangGraph-v1.0-green.svg)](https://github.com/langchain-ai/langgraph)
+[![LangGraph](https://img.shields.io/badge/LangGraph-v1.x-green.svg)](https://github.com/langchain-ai/langgraph)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![GitHub issues](https://img.shields.io/github/issues/joaomede/langgraph-supervised-quickstart)](https://github.com/joaomede/langgraph-supervised-quickstart/issues)
 
 ---
 
@@ -77,6 +81,9 @@ pip install -r requirements.txt
 # 4. Configure environment
 cp .env.example .env
 # Edit .env and add your OPENAI_API_KEY
+
+# 5. Verify installation
+python -c "import langchain, langgraph; print('✅ Dependencies installed successfully')"
 ```
 
 ### Usage
@@ -139,36 +146,30 @@ docker run --env-file .env langgraph-quickstart --query "Extract entities from: 
 ## 💡 Example Queries
 
 ### Text Analysis
-```bash
-"Extract entities from: Apple launched iPhone in California"
-"Find keywords in: artificial intelligence and machine learning"
-"Analyze text: OpenAI and LangGraph enable agentic systems"
-```
+- "Extract entities from: Apple launched iPhone in California"
+- "Find keywords in: artificial intelligence and machine learning"
+- "Analyze text: OpenAI and LangGraph enable agentic systems"
 
 ### Data Analysis
-```bash
-"Calculate statistics for: 23, 45, 67, 89, 12"
-"Compute mean and median of: 5, 15, 25, 35"
-"Show stats table for: 100, 200, 300, 400, 500"
-```
+- "Calculate statistics for: 23, 45, 67, 89, 12"
+- "Compute mean and median of: 5, 15, 25, 35"
+- "Show stats table for: 100, 200, 300, 400, 500"
 
 ### Multi-Agent Queries
-```bash
-"Analyze 'Tesla and SpaceX' and compute stats for: 10, 20, 30"
-"Extract entities from my text and calculate averages: 5, 10, 15"
-```
+- "Analyze 'Tesla and SpaceX' and compute stats for: 10, 20, 30"
+- "Extract entities from my text and calculate averages: 5, 10, 15"
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| **Orchestration** | LangGraph v1 | Multi-agent graph workflows |
-| **LLM Framework** | LangChain | Agent creation, tool binding |
-| **LLM Provider** | OpenAI GPT-4o-mini | Supervisor and agents |
-| **Terminal UI** | Rich | Beautiful formatting |
-| **Language** | Python 3.10+ | Type hints, modern syntax |
+| Component | Technology | Version | Purpose |
+|-----------|-----------|---------|---------|
+| **Orchestration** | LangGraph | v1.x | Multi-agent graph workflows |
+| **LLM Framework** | LangChain | ~0.3.x | Agent creation, tool binding |
+| **LLM Provider** | OpenAI GPT-4o-mini | Latest | Supervisor and agents |
+| **Terminal UI** | Rich | ~13.x | Beautiful formatting |
+| **Language** | Python | 3.10+ | Type hints, modern syntax |
 
 ---
 
@@ -357,7 +358,37 @@ See [Theoretical Foundation](#-theoretical-foundation) section for details.
 
 ---
 
-## 📚 Documentation
+## Troubleshooting
+
+### Common Issues
+
+**API Key Not Found**
+```
+Error: OpenAI API key not found
+```
+**Solution:** Ensure your `.env` file exists and contains `OPENAI_API_KEY=sk-...`
+
+**Import Errors**
+```
+ModuleNotFoundError: No module named 'langchain'
+```
+**Solution:** Activate virtual environment and run `pip install -r requirements.txt`
+
+**Docker Port Conflicts**
+```
+Error: port is already allocated
+```
+**Solution:** Check `docker-compose.yml` and modify port mappings if needed
+
+**PYTHONPATH Issues**
+```
+ModuleNotFoundError: No module named 'agent'
+```
+**Solution:** Always run with `PYTHONPATH=src` prefix or add to your `.env` file
+
+---
+
+## Documentation
 
 - 🐳 **[Docker Guide](docs/DOCKER_GUIDE.md)** - Complete containerization guide
 - 📄 **[Research Foundations](docs/RESEARCH_FOUNDATIONS.md)** - Deep dive into the papers that inspired this architecture

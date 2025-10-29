@@ -264,7 +264,76 @@ This minimal example covers:
 
 ---
 
-## 📄 License
+## 📚 Theoretical Foundation
+
+This project implements patterns from four foundational papers in LLM agent architecture:
+
+### 1. Chain-of-Thought Prompting (Wei et al., 2022)
+**Foundation for structured reasoning**
+
+Wei et al. demonstrated that prompting LLMs with step-by-step reasoning examples dramatically improves performance on complex tasks. This "chain-of-thought" approach forms the basis for how our supervisor and agents decompose problems.
+
+- 📄 Paper: [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)
+- 🔍 **Applied in this project:** The supervisor uses CoT-style reasoning to analyze queries before routing to specialists
+
+### 2. ReAct: Reasoning + Acting (Yao et al., 2022)
+**Synergizing thought and action**
+
+ReAct introduced the paradigm of interleaving reasoning traces with task-specific actions, enabling LLMs to maintain and update plans while interacting with external tools and information sources.
+
+- 📄 Paper: [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+- 🔍 **Applied in this project:** 
+  - Supervisor loop: `Thought → Action (route to agent) → Observation (tool results) → Thought`
+  - Agents execute tools and return observations that inform subsequent reasoning
+  - Interactive debugging shows this reasoning trace in action
+
+### 3. AutoGen: Multi-Agent Conversations (Wu et al., 2023)
+**Conversable agents and orchestration patterns**
+
+AutoGen demonstrated how to build LLM applications using conversable agents that can operate in multiple modes (LLM-only, human-in-loop, tool use), simplifying complex multi-agent workflows.
+
+- 📄 Paper: [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155)
+- 🔍 **Applied in this project:**
+  - Structured message passing between supervisor and specialist agents
+  - Tool-based handoff mechanism (`transfer_to_text`, `transfer_to_data`)
+  - Conversation memory for context maintenance
+
+### 4. MetaGPT: Meta Programming for Collaboration (Hong et al., 2023)
+**SOPs and role-based coordination**
+
+MetaGPT introduced Standard Operating Procedures (SOPs) as a meta-programming approach to multi-agent collaboration, with role-based assignments and validation of intermediate outputs.
+
+- 📄 Paper: [MetaGPT: Meta Programming for Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352)
+- 🔍 **Applied in this project:**
+  - Clear role separation: Supervisor (router) vs. Specialist Agents (executors)
+  - Defined tool contracts (input/output schemas)
+  - Each agent has a specific domain of expertise (text vs. data analysis)
+
+### How These Papers Inform the Architecture
+
+```
+Chain-of-Thought → Structured reasoning in supervisor prompts
+       ↓
+    ReAct → Thought-Action-Observation loop for dynamic planning
+       ↓
+   AutoGen → Conversable agents with tool handoff mechanisms
+       ↓
+  MetaGPT → Role-based specialists with defined responsibilities
+       ‖
+   [This Project]
+```
+
+**Key Takeaway:** This minimal implementation demonstrates how modern multi-agent systems combine:
+1. **Reasoning** (CoT) - Breaking down complex queries
+2. **Action** (ReAct) - Executing tools and incorporating observations
+3. **Coordination** (AutoGen) - Structured agent communication
+4. **Specialization** (MetaGPT) - Role-based task delegation
+
+**📖 Want to dive deeper?** See the [Research Foundations](docs/RESEARCH_FOUNDATIONS.md) document for detailed analysis of each paper, implementation examples, and future enhancement ideas.
+
+---
+
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -272,16 +341,26 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Built With
 
+**Frameworks & Tools:**
 - **[LangGraph](https://github.com/langchain-ai/langgraph)** - Graph-based agent orchestration
 - **[LangChain](https://github.com/langchain-ai/langchain)** - LLM application framework
 - **[Rich](https://github.com/Textualize/rich)** - Terminal formatting
 - **[OpenAI](https://openai.com/)** - LLM provider
+
+**Theoretical Foundations:**
+- Wei et al. (2022) - Chain-of-Thought Prompting
+- Yao et al. (2022) - ReAct: Reasoning and Acting
+- Wu et al. (2023) - AutoGen Multi-Agent Framework
+- Hong et al. (2023) - MetaGPT Meta Programming
+
+See [Theoretical Foundation](#-theoretical-foundation) section for details.
 
 ---
 
 ## 📚 Documentation
 
 - 🐳 **[Docker Guide](docs/DOCKER_GUIDE.md)** - Complete containerization guide
+- 📄 **[Research Foundations](docs/RESEARCH_FOUNDATIONS.md)** - Deep dive into the papers that inspired this architecture
 - 📄 **[Contributing](CONTRIBUTING.md)** - Contribution guidelines
 - 🔒 **[Security](SECURITY.md)** - Security policy
 - 📖 **[Code of Conduct](CODE_OF_CONDUCT.md)** - Community standards

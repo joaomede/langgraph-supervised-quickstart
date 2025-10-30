@@ -1,6 +1,6 @@
 # Core dependencies - LangGraph + LangSmith (Latest Versions - October 2025)
 # Requires Python >= 3.10
-# Latest versions from PyPI (Oct 23, 2025)
+# Latest versions from PyPI (Oct 30, 2025)
 
 langgraph==1.0.1
 langchain==1.0.2

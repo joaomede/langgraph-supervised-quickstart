@@ -1,11 +1,11 @@
 # 🤖 LangGraph Supervised Quickstart
 
-A **minimal example** of a multi-agent supervisor system using LangGraph v1. Designed for easy understanding and quick setup.
+A **minimal example** of a multi-agent supervisor system using LangGraph v1.0. Designed for easy understanding and quick setup.
 
 ![Demo](docs/assets/demo.gif?raw=true)
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![LangGraph](https://img.shields.io/badge/LangGraph-v1.x-green.svg)](https://github.com/langchain-ai/langgraph)
+[![LangGraph](https://img.shields.io/badge/LangGraph-v1.0.1-green.svg)](https://github.com/langchain-ai/langgraph)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GitHub issues](https://img.shields.io/github/issues/joaomede/langgraph-supervised-quickstart)](https://github.com/joaomede/langgraph-supervised-quickstart/issues)
@@ -96,7 +96,7 @@ PYTHONPATH=src python -m cli
 ```
 ╭──────────────────────────────────────────────╮
 │   🤖 Multi-Agent Supervisor System           │
-│   Powered by LangGraph v1                    │
+│   Powered by LangGraph v1.0.1                │
 ╰──────────────────────────────────────────────╯
 
 You: Extract entities from Microsoft and Google
@@ -165,10 +165,10 @@ docker run --env-file .env langgraph-quickstart --query "Extract entities from: 
 
 | Component | Technology | Version | Purpose |
 |-----------|-----------|---------|---------|
-| **Orchestration** | LangGraph | v1.x | Multi-agent graph workflows |
-| **LLM Framework** | LangChain | ~0.3.x | Agent creation, tool binding |
+| **Orchestration** | LangGraph | v1.0.1 | Multi-agent graph workflows |
+| **LLM Framework** | LangChain | v1.0.2 | Agent creation, tool binding |
 | **LLM Provider** | OpenAI GPT-4o-mini | Latest | Supervisor and agents |
-| **Terminal UI** | Rich | ~13.x | Beautiful formatting |
+| **Terminal UI** | Rich | v14.x | Beautiful formatting |
 | **Language** | Python | 3.10+ | Type hints, modern syntax |
 
 ---
@@ -257,7 +257,7 @@ DEBUG=true
 ## 🎓 What You'll Learn
 
 This minimal example covers:
-- **LangGraph v1** - Graph-based agent orchestration
+- **LangGraph v1.0.1** - Graph-based agent orchestration
 - **Supervisor Pattern** - Delegating to specialist agents via tools
 - **Tool-based Routing** - Agent handoff using tools (not conditional edges)
 - **ReAct Agents** - Reasoning and acting pattern

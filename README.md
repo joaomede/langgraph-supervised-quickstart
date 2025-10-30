@@ -2,7 +2,7 @@
 
 A **minimal example** of a multi-agent supervisor system using LangGraph v1. Designed for easy understanding and quick setup.
 
-![Demo](docs/assets/demo.gif)
+![Demo](docs/assets/demo.gif?raw=true)
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-v1.x-green.svg)](https://github.com/langchain-ai/langgraph)

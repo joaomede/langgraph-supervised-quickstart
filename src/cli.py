@@ -13,6 +13,7 @@ from __future__ import annotations
 import os
 import sys
 from pathlib import Path
+import uuid
 from typing import List
 
 from dotenv import load_dotenv
@@ -103,9 +104,13 @@ def _run_single_query(query: str) -> int:
     
     # Process with status indicator
     with Status("[info]🤔 Processing...[/info]", console=console, spinner="dots"):
+        thread_id = f"single-{uuid.uuid4()}"
         result = graph.invoke(
             {"messages": [HumanMessage(content=query)]},
-            config={"configurable": {"thread_id": "single-query"}},
+            config={
+                "configurable": {"thread_id": thread_id},
+                "recursion_limit": 25,  # Allow full pipeline execution
+            },
         )
     
     response = result['messages'][-1].content
@@ -127,6 +132,7 @@ def _run_interactive_chat() -> int:
     """Interactive chat mode: conversational interface with context memory."""
     graph = build_system()
     conversation_history: List[str] = []
+    session_id = str(uuid.uuid4())
     message_count = 0
     
     # Display elegant header (ASCII or Panel based on preference)
@@ -184,7 +190,7 @@ def _run_interactive_chat() -> int:
             
             # Build context-aware query with conversation history
             if conversation_history:
-                context = "\n".join(conversation_history[-10:])  # last 5 exchanges
+                context = "\n".join(conversation_history[-20:])  # last 5 exchanges
                 full_query = f"[Conversation context:\n{context}\n]\n\nCurrent query: {user_input}"
             else:
                 full_query = user_input
@@ -192,9 +198,13 @@ def _run_interactive_chat() -> int:
             # Invoke agent with elegant status
             with Status("[info]🤔 Thinking...[/info]", console=console, spinner="dots"):
                 try:
+                    thread_id = f"chat-{session_id}-{message_count+1}-{uuid.uuid4()}"
                     result = graph.invoke(
                         {"messages": [HumanMessage(content=full_query)]},
-                        config={"configurable": {"thread_id": "interactive-chat"}},
+                        config={
+                            "configurable": {"thread_id": thread_id},
+                            "recursion_limit": 25,  # Allow full pipeline execution
+                        },
                     )
                     response = result['messages'][-1].content
                 except Exception as e:
